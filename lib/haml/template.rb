@@ -29,3 +29,7 @@ Haml::Template.options[:ugly]        = !Rails.env.development?
 Haml::Template.options[:escape_html] = true
 
 require 'haml/template/plugin'
+
+ActiveSupport.on_load(:action_controller) do
+  ActionController::Base.helper Haml::Helpers if Haml::Template.options[:omit_extend_helpers]
+end
